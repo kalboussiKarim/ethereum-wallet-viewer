@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EthWallet Viewer — Sepolia</title>
+  <meta name="description" content="View your Ethereum wallet balance and transactions on Sepolia testnet">
+  
+  <!-- Favicon (Ethereum diamond emoji as SVG) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💎</text></svg>">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+
+  <div class="app-container">
+
+    <!-- ============================================================ -->
+    <!-- Navigation / Header                                          -->
+    <!-- ============================================================ -->
+    <nav class="nav-header">
+      <div class="nav-brand">
+        <div class="nav-brand-icon">💎</div>
+        <span data-i18n="app.title">EthWallet Viewer</span>
+      </div>
+
+      <div class="nav-controls">
+        <!-- Theme Toggle -->
+        <button id="theme-toggle" class="nav-btn" aria-label="Toggle theme">
+          <span class="theme-icon">🌙</span>
+        </button>
+
+        <!-- Language Toggle -->
+        <button id="lang-toggle" class="nav-btn" aria-label="Toggle language">
+          FR
+        </button>
+
+        <!-- Disconnect Button (shown when connected) -->
+        <button id="disconnect-btn" class="hidden" data-i18n="disconnect.button">
+          Disconnect
+        </button>
+      </div>
+    </nav>
+
+    <!-- ============================================================ -->
+    <!-- Error Message (global)                                       -->
+    <!-- ============================================================ -->
+    <div id="error-message" class="hidden"></div>
+
+    <!-- ============================================================ -->
+    <!-- Landing Section (Not Connected)                              -->
+    <!-- ============================================================ -->
+    <section id="landing-section">
+      <div class="landing-icon">💎</div>
+      <h1 class="landing-title" data-i18n="app.title">EthWallet Viewer</h1>
+      <p class="landing-subtitle" data-i18n="app.subtitle">
+        Connect your MetaMask wallet to view your Sepolia balance &amp; transactions
+      </p>
+      <button id="connect-btn">
+        <img 
+          src="https://raw.githubusercontent.com/nicehash/Logos/master/MetaMask.svg"
+          alt="MetaMask" 
+          class="metamask-icon"
+          onerror="this.style.display='none'"
+        >
+        <span data-i18n="connect.button">Connect with MetaMask</span>
+      </button>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- Wallet Section (Connected)                                   -->
+    <!-- ============================================================ -->
+    <section id="wallet-section" class="hidden">
+
+      <!-- Wallet Info Cards -->
+      <div class="wallet-info">
+        <div class="info-card address">
+          <span class="info-card-label" data-i18n="wallet.address">Wallet Address</span>
+          <div id="balance-display">
+            <span class="info-card-value" id="wallet-address-value">—</span>
+          </div>
+        </div>
+
+        <div class="info-card balance">
+          <span class="info-card-label" data-i18n="wallet.balance">ETH Balance</span>
+          <span class="info-card-value" id="wallet-balance-value">—</span>
+        </div>
+
+        <div class="info-card network">
+          <span class="info-card-label" data-i18n="wallet.network">Network</span>
+          <div class="network-badge">
+            <span class="network-dot"></span>
+            <span id="wallet-network-value" data-i18n="wallet.network.sepolia">Sepolia Testnet</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Transactions List -->
+      <div class="transactions-section">
+        <div class="section-header">
+          <h2 class="section-title" data-i18n="tx.title">Last 10 Transactions</h2>
+        </div>
+        <div id="transactions-list">
+          <!-- Transaction cards rendered here by JS -->
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- Footer                                                       -->
+    <!-- ============================================================ -->
+    <footer class="app-footer">
+      <p>
+        <span data-i18n="footer.powered">Powered by ethers.js & Etherscan API</span>
+        &nbsp;·&nbsp;
+        <span data-i18n="footer.network">Sepolia Testnet</span>
+        &nbsp;·&nbsp;
+        <a href="https://sepolia.etherscan.io" target="_blank" rel="noopener noreferrer">Etherscan ↗</a>
+      </p>
+    </footer>
+
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- Scripts (order matters: dependencies first, then app)         -->
+  <!-- ============================================================ -->
+  <script src="./js/i18n.js"></script>
+  <script src="./js/theme.js"></script>
+  <script src="./js/metamask.js"></script>
+  <script src="./js/app.js"></script>
+
+</body>
+</html>
